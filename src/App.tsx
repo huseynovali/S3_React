@@ -7,17 +7,16 @@ import Login from "./page/Login";
 import Register from "./page/Register";
 import Admin from "./page/Admin";
 
-
 function App() {
   return (
     <Routes>
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/:id" element={<ProductDetail/>} />
-        <Route path="login" element={<Login/>} />
-        <Route path="register" element={<Register/>} />
-        <Route path="admin" element={<Admin/>}/>
+        <Route path="/:id" element={<ProductDetail />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </Route>
+      <Route path="admin" element={<Admin />} />
     </Routes>
   );
 }
