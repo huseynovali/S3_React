@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { useState } from "react";
 
 function ProductDetailsComp() {
@@ -18,19 +19,29 @@ function ProductDetailsComp() {
             </div>
 
             <div className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
-              <label className="h-[100px] group relative border rounded-md  flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1  bg-white shadow-sm text-gray-900 cursor-pointer">
+              <label
+                className={classNames(
+                  "https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg" ==
+                    selectedPhoto
+                    ? "border-indigo-500"
+                    : "border-transparent",
+                  "h-[100px] group  border-2 relative  rounded-md  flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1  bg-white shadow-sm text-gray-900 cursor-pointer"
+                )}
+              >
                 <input
                   type="radio"
                   name="size-choice"
                   value="https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg"
-                  className="sr-only"
+                  className="sr-only "
                   aria-labelledby="size-choice-2-label"
-                  onClick={(e: React.MouseEvent<HTMLInputElement, MouseEvent>) => setSelectedSize((e.target as HTMLInputElement).value)}
+                  onClick={(
+                    e: React.MouseEvent<HTMLInputElement, MouseEvent>
+                  ) => setSelectedSize((e.target as HTMLInputElement).value)}
                 />
                 <img
                   src="https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg"
                   alt="Model wearing plain gray basic tee."
-                  className="w-full h-full object-center object-cover"
+                  className="w-full h-full object-center object-cover rounded-md"
                 />
 
                 <div
@@ -46,7 +57,9 @@ function ProductDetailsComp() {
                   value="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg"
                   className="sr-only"
                   aria-labelledby="size-choice-2-label"
-                  onClick={(e: React.MouseEvent<HTMLInputElement, MouseEvent>) => setSelectedSize((e.target as HTMLInputElement).value)}
+                  onClick={(
+                    e: React.MouseEvent<HTMLInputElement, MouseEvent>
+                  ) => setSelectedSize((e.target as HTMLInputElement).value)}
                 />
                 <img
                   src="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg"
@@ -60,7 +73,6 @@ function ProductDetailsComp() {
                 ></div>
               </label>
 
-           
               <label className="h-[100px] group relative border rounded-md  flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1  bg-white shadow-sm text-gray-900 cursor-pointer">
                 <input
                   type="radio"
@@ -68,10 +80,12 @@ function ProductDetailsComp() {
                   value="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg"
                   className="sr-only"
                   aria-labelledby="size-choice-2-label"
-                  onClick={(e: React.MouseEvent<HTMLInputElement, MouseEvent>) => setSelectedSize((e.target as HTMLInputElement).value)}
+                  onClick={(
+                    e: React.MouseEvent<HTMLInputElement, MouseEvent>
+                  ) => setSelectedSize((e.target as HTMLInputElement).value)}
                 />
                 <img
-                    src="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg"
+                  src="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg"
                   alt="Model wearing plain gray basic tee."
                   className="w-full h-full object-center object-cover"
                 />
@@ -89,10 +103,12 @@ function ProductDetailsComp() {
                   value="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg"
                   className="sr-only"
                   aria-labelledby="size-choice-2-label"
-                  onClick={(e: React.MouseEvent<HTMLInputElement, MouseEvent>) => setSelectedSize((e.target as HTMLInputElement).value)}
+                  onClick={(
+                    e: React.MouseEvent<HTMLInputElement, MouseEvent>
+                  ) => setSelectedSize((e.target as HTMLInputElement).value)}
                 />
                 <img
-                    src="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg"
+                  src="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg"
                   alt="Model wearing plain gray basic tee."
                   className="w-full h-full object-center object-cover"
                 />
@@ -102,8 +118,6 @@ function ProductDetailsComp() {
                   aria-hidden="true"
                 ></div>
               </label>
-
-
             </div>
           </div>
 
@@ -316,7 +330,6 @@ function ProductDetailsComp() {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
