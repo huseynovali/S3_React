@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router";
 import MainLayout from "./layout/MainLayout";
 import Home from "./page/Home";
 import ProductDetail from "./page/ProductDetail";
+import Login from "./page/Login";
 
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/:id" element={<ProductDetail/>} />
-        <Route path="*" element={<a>sdasda</a>} />
+        <Route path="login" element={<Login/>} />
       </Route>
     </Routes>
   );
