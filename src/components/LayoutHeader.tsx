@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 function LayoutHeader() {
@@ -13,6 +12,12 @@ function LayoutHeader() {
                 className="text-base font-medium text-white hover:text-indigo-50"
               >
                 Home
+              </Link>
+              <Link
+                to="/admin"
+                className="text-base font-medium text-white hover:text-indigo-50"
+              >
+                Admin
               </Link>
             </div>
           </div>
@@ -31,7 +36,20 @@ function LayoutHeader() {
             </Link>
           </div>
         </div>
-        <div className="py-4 flex flex-wrap justify-center space-x-6 lg:hidden"></div>
+        <div className="py-4 flex flex-wrap justify-center space-x-6 lg:hidden">
+          <Link
+            to="/"
+            className="text-base font-medium text-white hover:text-indigo-50"
+          >
+            Home
+          </Link>
+          <Link
+            to="/admin"
+            className="text-base font-medium text-white hover:text-indigo-50"
+          >
+            Admin
+          </Link>
+        </div>
       </nav>
     </header>
   );
