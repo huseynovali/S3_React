@@ -1,10 +1,31 @@
 import classNames from "classnames";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import { HomeService } from "../services/api/HomeService";
+import axios from "axios";
 
 function ProductDetailsComp() {
-  const [selectedPhoto, setSelectedPhoto] = useState(
-    "https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg"
+  const id = 1;
+  const [selectedPhoto, setSelectedPhoto] = useState(``);
+
+  useEffect(() => {
+    setSelectedPhoto(
+      `http://localhost:8080/api/v1/use/public/product/1/image/1`
+    );
+  }, []);
+  const { isLoading, error, data } = useQuery(
+    ["getPostId", id],
+    () => HomeService.getProductById(id),
+    {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+    }
   );
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error</p>;
+  console.log(data);
+
   return (
     <div className="bg-white">
       <div className="pt-6">
@@ -19,105 +40,39 @@ function ProductDetailsComp() {
             </div>
 
             <div className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
-              <label
-                className={classNames(
-                  "https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg" ==
-                    selectedPhoto
-                    ? "border-indigo-500"
-                    : "border-transparent",
-                  "h-[100px] group  border-2 relative  rounded-md  flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1  bg-white shadow-sm text-gray-900 cursor-pointer"
-                )}
-              >
-                <input
-                  type="radio"
-                  name="size-choice"
-                  value="https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg"
-                  className="sr-only "
-                  aria-labelledby="size-choice-2-label"
-                  onClick={(
-                    e: React.MouseEvent<HTMLInputElement, MouseEvent>
-                  ) => setSelectedPhoto((e.target as HTMLInputElement).value)}
-                />
-                <img
-                  src="https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg"
-                  alt="Model wearing plain gray basic tee."
-                  className="w-full h-full object-center object-cover rounded-md"
-                />
+              {data?.data?.images?.map((image: any) => (
+                <label
+                  className={classNames(
+                    selectedPhoto ===
+                      `http://localhost:8080/api/v1/use/public/product/${data?.data?.id}/image/${image?.id}`
+                      ? "border-indigo-500"
+                      : "border-transparent",
+                    "h-[100px] group  border-2 relative  rounded-md  flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1  bg-white shadow-sm text-gray-900 cursor-pointer"
+                  )}
+                >
+                  <input
+                    type="radio"
+                    name="size-choice"
+                    value={`http://localhost:8080/api/v1/use/public/product/${data?.data?.id}/image/${image?.id}`}
+                    className="sr-only "
+                    aria-labelledby="size-choice-2-label"
+                    onClick={(
+                      e: React.MouseEvent<HTMLInputElement, MouseEvent>
+                    ) => setSelectedPhoto((e.target as HTMLInputElement).value)}
+                  />
+                  <img
+                    src={`http://localhost:8080/api/v1/use/public/product/${data?.data?.id}/image/${image?.id}`}
+                    loading="lazy"
+                    alt="Model wearing plain gray basic tee."
+                    className="w-full h-full object-center object-cover rounded-md"
+                  />
 
-                <div
-                  className="absolute -inset-px rounded-md pointer-events-none"
-                  aria-hidden="true"
-                ></div>
-              </label>
-
-              <label className="h-[100px] group relative border rounded-md  flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1  bg-white shadow-sm text-gray-900 cursor-pointer">
-                <input
-                  type="radio"
-                  name="size-choice"
-                  value="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg"
-                  className="sr-only"
-                  aria-labelledby="size-choice-2-label"
-                  onClick={(
-                    e: React.MouseEvent<HTMLInputElement, MouseEvent>
-                  ) => setSelectedPhoto((e.target as HTMLInputElement).value)}
-                />
-                <img
-                  src="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg"
-                  alt="Model wearing plain gray basic tee."
-                  className="w-full h-full object-center object-cover"
-                />
-
-                <div
-                  className="absolute -inset-px rounded-md pointer-events-none"
-                  aria-hidden="true"
-                ></div>
-              </label>
-
-              <label className="h-[100px] group relative border rounded-md  flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1  bg-white shadow-sm text-gray-900 cursor-pointer">
-                <input
-                  type="radio"
-                  name="size-choice"
-                  value="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg"
-                  className="sr-only"
-                  aria-labelledby="size-choice-2-label"
-                  onClick={(
-                    e: React.MouseEvent<HTMLInputElement, MouseEvent>
-                  ) => setSelectedPhoto((e.target as HTMLInputElement).value)}
-                />
-                <img
-                  src="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg"
-                  alt="Model wearing plain gray basic tee."
-                  className="w-full h-full object-center object-cover"
-                />
-
-                <div
-                  className="absolute -inset-px rounded-md pointer-events-none"
-                  aria-hidden="true"
-                ></div>
-              </label>
-
-              <label className="h-[100px] group relative border rounded-md  flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1  bg-white shadow-sm text-gray-900 cursor-pointer">
-                <input
-                  type="radio"
-                  name="size-choice"
-                  value="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg"
-                  className="sr-only"
-                  aria-labelledby="size-choice-2-label"
-                  onClick={(
-                    e: React.MouseEvent<HTMLInputElement, MouseEvent>
-                  ) => setSelectedPhoto((e.target as HTMLInputElement).value)}
-                />
-                <img
-                  src="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg"
-                  alt="Model wearing plain gray basic tee."
-                  className="w-full h-full object-center object-cover"
-                />
-
-                <div
-                  className="absolute -inset-px rounded-md pointer-events-none"
-                  aria-hidden="true"
-                ></div>
-              </label>
+                  <div
+                    className="absolute -inset-px rounded-md pointer-events-none"
+                    aria-hidden="true"
+                  ></div>
+                </label>
+              ))}
             </div>
           </div>
 
