@@ -40,6 +40,7 @@ function AddProductImage() {
       "image/*": [],
     },
     onDrop: (acceptedFiles) => {
+      if(acceptedFiles.length + files.length > 3) return alert("Max 3 images allowed");
       setFiles([
         ...files,
         ...acceptedFiles.map((file) =>
