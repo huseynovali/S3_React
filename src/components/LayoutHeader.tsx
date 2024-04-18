@@ -14,7 +14,7 @@ function LayoutHeader() {
                 Home
               </Link>
               <Link
-                to="/admin"
+                to="/admin/products"
                 className="text-base font-medium text-white hover:text-indigo-50"
               >
                 Admin
@@ -44,7 +44,7 @@ function LayoutHeader() {
             Home
           </Link>
           <Link
-            to="/admin"
+            to="/admin/products"
             className="text-base font-medium text-white hover:text-indigo-50"
           >
             Admin

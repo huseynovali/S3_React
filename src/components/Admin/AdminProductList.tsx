@@ -1,4 +1,11 @@
-import { ChevronRightIcon } from "@heroicons/react/20/solid";
+import {
+  ChevronRightIcon,
+  PencilIcon,
+  PencilSquareIcon,
+  TrashIcon,
+} from "@heroicons/react/20/solid";
+import ProductDeleteAlert from "./ProductDeleteAlert";
+import { useState } from "react";
 
 const products = [
   {
@@ -33,6 +40,15 @@ const products = [
   },
 ];
 function AdminProductList() {
+  const [isOpenAlert, setIsOpenAlert] = useState(false);
+
+  function closeModal() {
+    setIsOpenAlert(false);
+  }
+
+  function openModal() {
+    setIsOpenAlert(true);
+  }
   return (
     <div className="bg-white  overflow-hidden ">
       <ul className=" ">
@@ -60,17 +76,29 @@ function AdminProductList() {
                     <div className="hidden md:block"></div>
                   </div>
                 </div>
-                <div>
-                  <ChevronRightIcon
-                    className="h-5 w-5 text-gray-400"
-                    aria-hidden="true"
-                  />
+                <div className="flex gap-x-3">
+                  <div
+                    className="delete_Icon p-2 z-10 hover:bg-slate-200 rounded-full"
+                    onClick={openModal}
+                  >
+                    <TrashIcon
+                      className="h-5 w-5 text-red-400"
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <div className="edit_icon p-2 z-10 hover:bg-slate-200 rounded-full">
+                    <PencilSquareIcon
+                      className="h-5 w-5 text-indigo-400"
+                      aria-hidden="true"
+                    />
+                  </div>
                 </div>
               </div>
             </a>
           </li>
         ))}
       </ul>
+      {isOpenAlert && <ProductDeleteAlert closeModal={closeModal} />}
     </div>
   );
 }
