@@ -1,11 +1,17 @@
-import React from "react";
+import { ProductObject } from "../assets/types/products";
 
-function ProductCard({key, product}: { key: number,product: object}) {
+function ProductCard({
+  key,
+  product,
+}: {
+  key: number;
+  product: ProductObject;
+}) {
   return (
     <div className="group relative" key={key}>
       <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
         <img
-          src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
+          src={`http://localhost:8080/api/v1/use/public/product/${product?.id}/image/${product.images[0]?.id}`}
           alt="Front of men&#039;s Basic Tee in black."
           className="w-full h-full object-center object-cover lg:w-full lg:h-full"
         />
@@ -15,12 +21,13 @@ function ProductCard({key, product}: { key: number,product: object}) {
           <h3 className="text-sm text-gray-700">
             <a href="#">
               <span aria-hidden="true" className="absolute inset-0"></span>
-              Basic Tee
+              {product?.name}
             </a>
           </h3>
-          <p className="mt-1 text-sm text-gray-500">Black</p>
         </div>
-        <p className="text-sm font-medium text-gray-900">$35</p>
+        <p className="text-sm font-medium text-gray-900">
+          {product?.price} Azn
+        </p>
       </div>
     </div>
   );
