@@ -27,21 +27,26 @@ function AdminNav() {
                   </div>
                   <div className="hidden md:block">
                     <div className="ml-10 flex items-baseline space-x-4">
-                        {navigation.map((item, itemIdx) =>
-                            itemIdx === 0 ? (
-                                <Link key={itemIdx} to={item.split(" ").join("").toLocaleLowerCase()}>
-                                    <button className="bg-indigo-600 text-white block px-3 py-2 rounded-md text-base font-medium">
-                                        {item}
-                                    </button>
-                                </Link>
-                            ) : (
-                                <Link key={itemIdx} to={item.split(" ").join("").toLocaleLowerCase()}
-                                    className="text-indigo-300 hover:bg-indigo-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                                >
-                                    {item}
-                                </Link>
-                            )
-                        )}
+                      {navigation.map((item, itemIdx) =>
+                        itemIdx === 0 ? (
+                          <Link
+                            key={itemIdx}
+                            to={item.split(" ").join("").toLocaleLowerCase()}
+                          >
+                            <button className="bg-indigo-600 text-white block px-3 py-2 rounded-md text-base font-medium">
+                              {item}
+                            </button>
+                          </Link>
+                        ) : (
+                          <Link
+                            key={itemIdx}
+                            to={item.split(" ").join("").toLocaleLowerCase()}
+                            className="text-indigo-300 hover:bg-indigo-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                          >
+                            {item}
+                          </Link>
+                        )
+                      )}
                     </div>
                   </div>
                 </div>
