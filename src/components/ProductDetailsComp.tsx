@@ -2,14 +2,14 @@ import classNames from "classnames";
 import React, { useState } from "react";
 
 function ProductDetailsComp() {
-  const [selectedPhoto, setSelectedSize] = useState(
+  const [selectedPhoto, setSelectedPhoto] = useState(
     "https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg"
   );
   return (
     <div className="bg-white">
       <div className="pt-6">
         <div className="grid  md:grid-cols-2">
-          <div className="mt-6 max-w-2xl mx-auto sm:px-6 max-w-7xl px-8 grid lg:grid-cols-1 gap-x-8 gap-y-3">
+          <div className="mt-6 max-w-2xl mx-auto sm:px-6  px-8 grid lg:grid-cols-1 gap-x-8 gap-y-3">
             <div className=" w-full h-[500px] rounded-lg overflow-hidden block">
               <img
                 src={selectedPhoto}
@@ -36,7 +36,7 @@ function ProductDetailsComp() {
                   aria-labelledby="size-choice-2-label"
                   onClick={(
                     e: React.MouseEvent<HTMLInputElement, MouseEvent>
-                  ) => setSelectedSize((e.target as HTMLInputElement).value)}
+                  ) => setSelectedPhoto((e.target as HTMLInputElement).value)}
                 />
                 <img
                   src="https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg"
@@ -59,7 +59,7 @@ function ProductDetailsComp() {
                   aria-labelledby="size-choice-2-label"
                   onClick={(
                     e: React.MouseEvent<HTMLInputElement, MouseEvent>
-                  ) => setSelectedSize((e.target as HTMLInputElement).value)}
+                  ) => setSelectedPhoto((e.target as HTMLInputElement).value)}
                 />
                 <img
                   src="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg"
@@ -82,7 +82,7 @@ function ProductDetailsComp() {
                   aria-labelledby="size-choice-2-label"
                   onClick={(
                     e: React.MouseEvent<HTMLInputElement, MouseEvent>
-                  ) => setSelectedSize((e.target as HTMLInputElement).value)}
+                  ) => setSelectedPhoto((e.target as HTMLInputElement).value)}
                 />
                 <img
                   src="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg"
@@ -105,7 +105,7 @@ function ProductDetailsComp() {
                   aria-labelledby="size-choice-2-label"
                   onClick={(
                     e: React.MouseEvent<HTMLInputElement, MouseEvent>
-                  ) => setSelectedSize((e.target as HTMLInputElement).value)}
+                  ) => setSelectedPhoto((e.target as HTMLInputElement).value)}
                 />
                 <img
                   src="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg"
@@ -164,7 +164,7 @@ function ProductDetailsComp() {
                 </h3>
 
                 <div className="mt-4">
-                  <ul role="list" className="pl-4 list-disc text-sm space-y-2">
+                  <ul className="pl-4 list-disc text-sm space-y-2">
                     <li className="text-gray-400">
                       <span className="text-gray-600">
                         Hand cut and sewn locally

@@ -1,7 +1,8 @@
-import { CheckCircleIcon } from "@heroicons/react/20/solid";
-import React from "react";
-
-function ProductDeleteAlert({ closeModal }: { closeModal: () => void }) {
+function ProductDeleteAlert({
+  closeModal,
+}: {
+  readonly closeModal: () => void;
+}) {
   return (
     <div className="absolute h-screen w-full flex justify-center items-center inset-0 bg-slate-500 z-30 bg-opacity-70">
       <div className="rounded-md bg-white  p-4 ">

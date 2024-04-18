@@ -1,9 +1,4 @@
-import {
-  ChevronRightIcon,
-  PencilIcon,
-  PencilSquareIcon,
-  TrashIcon,
-} from "@heroicons/react/20/solid";
+import { PencilSquareIcon, TrashIcon } from "@heroicons/react/20/solid";
 import ProductDeleteAlert from "./ProductDeleteAlert";
 import { useState } from "react";
 
@@ -76,22 +71,20 @@ function AdminProductList() {
                     <div className="hidden md:block"></div>
                   </div>
                 </div>
-                <div className="flex gap-x-3">
-                  <div
-                    className="delete_Icon p-2 z-10 hover:bg-slate-200 rounded-full"
-                    onClick={openModal}
-                  >
-                    <TrashIcon
-                      className="h-5 w-5 text-red-400"
-                      aria-hidden="true"
-                    />
-                  </div>
-                  <div className="edit_icon p-2 z-10 hover:bg-slate-200 rounded-full">
-                    <PencilSquareIcon
-                      className="h-5 w-5 text-indigo-400"
-                      aria-hidden="true"
-                    />
-                  </div>
+                <button
+                  className="delete_Icon p-2 z-10 hover:bg-slate-200 rounded-full"
+                  onClick={openModal}
+                >
+                  <TrashIcon
+                    className="h-5 w-5 text-red-400"
+                    aria-hidden="true"
+                  />
+                </button>
+                <div className="edit_icon p-2 z-10 hover:bg-slate-200 rounded-full">
+                  <PencilSquareIcon
+                    className="h-5 w-5 text-indigo-400"
+                    aria-hidden="true"
+                  />
                 </div>
               </div>
             </a>
