@@ -1,8 +1,8 @@
 import React from "react";
 
-function ProductCard() {
+function ProductCard({key, product}: { key: number,product: object}) {
   return (
-    <div className="group relative">
+    <div className="group relative" key={key}>
       <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
         <img
           src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"

@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { HomeService } from "../services/api/HomeService";
 

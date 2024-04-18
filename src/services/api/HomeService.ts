@@ -13,7 +13,11 @@ export const HomeService = {
   },
   getProductById: async (productId: number) => {
     return axiosPrivate.get(`use/public/product/${productId}`);
-  }
+  },
+  getAllProducts: async () => {
+    return axiosPrivate.get("use/public/product/all");
+  },
+
   // ,
   // getLikedPostByUser: async (userId: number) => {
   //   return axiosPrivate.get(`post/user/${userId}/likes`);
