@@ -1,18 +1,12 @@
 import classNames from "classnames";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { HomeService } from "../services/api/HomeService";
-import axios from "axios";
 
 function ProductDetailsComp() {
   const id = 1;
-  const [selectedPhoto, setSelectedPhoto] = useState(``);
+  const [selectedPhoto, setSelectedPhoto] = useState(1);
 
-  useEffect(() => {
-    setSelectedPhoto(
-      `http://localhost:8080/api/v1/use/public/product/1/image/1`
-    );
-  }, []);
   const { isLoading, error, data } = useQuery(
     ["getPostId", id],
     () => HomeService.getProductById(id),
@@ -32,19 +26,23 @@ function ProductDetailsComp() {
         <div className="grid  md:grid-cols-2">
           <div className="mt-6 max-w-2xl mx-auto sm:px-6  px-8 grid lg:grid-cols-1 gap-x-8 gap-y-3">
             <div className=" w-full h-[500px] rounded-lg overflow-hidden block">
-              <img
-                src={selectedPhoto}
-                alt="Two each of gray, white, and black shirts laying flat."
-                className="w-full h-full object-center object-cover"
-              />
+              {data?.data?.images.map((image: any) => (
+                <img
+                  src={`http://localhost:8080/api/v1/use/public/product/${data?.data?.id}/image/${image?.id}`}
+                  alt="Two each of gray, white, and black shirts laying flat."
+                  className={classNames(
+                    image?.id == selectedPhoto ? "block" : "hidden",
+                    "w-full h-full object-center object-cover"
+                  )}
+                />
+              ))}
             </div>
 
             <div className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
               {data?.data?.images?.map((image: any) => (
                 <label
                   className={classNames(
-                    selectedPhoto ===
-                      `http://localhost:8080/api/v1/use/public/product/${data?.data?.id}/image/${image?.id}`
+                    selectedPhoto === image?.id
                       ? "border-indigo-500"
                       : "border-transparent",
                     "h-[100px] group  border-2 relative  rounded-md  flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1  bg-white shadow-sm text-gray-900 cursor-pointer"
@@ -53,12 +51,16 @@ function ProductDetailsComp() {
                   <input
                     type="radio"
                     name="size-choice"
-                    value={`http://localhost:8080/api/v1/use/public/product/${data?.data?.id}/image/${image?.id}`}
+                    value={image?.id}
                     className="sr-only "
                     aria-labelledby="size-choice-2-label"
                     onClick={(
                       e: React.MouseEvent<HTMLInputElement, MouseEvent>
-                    ) => setSelectedPhoto((e.target as HTMLInputElement).value)}
+                    ) =>
+                      setSelectedPhoto(
+                        Number((e.target as HTMLInputElement).value)
+                      )
+                    }
                   />
                   <img
                     src={`http://localhost:8080/api/v1/use/public/product/${data?.data?.id}/image/${image?.id}`}
