@@ -1,11 +1,11 @@
 import classNames from "classnames";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { HomeService } from "../services/api/HomeService";
 
 function ProductDetailsComp() {
-  const id = 1;
-  const [selectedPhoto, setSelectedPhoto] = useState(1);
+  const id = 2;
+  const [selectedPhoto, setSelectedPhoto] = useState();
 
   const { isLoading, error, data } = useQuery(
     ["getPostId", id],
@@ -15,6 +15,11 @@ function ProductDetailsComp() {
       refetchOnMount: false,
     }
   );
+  useEffect(() => {
+    if (data?.data?.images) {
+      setSelectedPhoto(data?.data?.images[0]?.id);
+    }
+  }, [data]);
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error</p>;
@@ -54,13 +59,7 @@ function ProductDetailsComp() {
                     value={image?.id}
                     className="sr-only "
                     aria-labelledby="size-choice-2-label"
-                    onClick={(
-                      e: React.MouseEvent<HTMLInputElement, MouseEvent>
-                    ) =>
-                      setSelectedPhoto(
-                        Number((e.target as HTMLInputElement).value)
-                      )
-                    }
+                    onClick={() => setSelectedPhoto(image?.id)}
                   />
                   <img
                     src={`http://localhost:8080/api/v1/use/public/product/${data?.data?.id}/image/${image?.id}`}
@@ -81,13 +80,13 @@ function ProductDetailsComp() {
           <div className="max-w-2xl mx-auto pt-10 pb-16 px-4 sm:px-6 lg:max-w-7xl lg:pt-16 lg:pb-24 lg:px-8 lg:grid lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8">
             <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
               <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
-                Basic Tee 6-Pack
+                {data?.data?.name}
               </h1>
             </div>
 
             <div className="mt-4 lg:mt-0 lg:row-span-3">
               <h2 className="sr-only">Product information</h2>
-              <p className="text-3xl text-gray-900">$192</p>
+              <p className="text-2xl text-gray-900">{data?.data?.price} Azn</p>
 
               <form className="mt-10">
                 <button
@@ -105,12 +104,7 @@ function ProductDetailsComp() {
 
                 <div className="space-y-6">
                   <p className="text-base text-gray-900">
-                    The Basic Tee 6-Pack allows you to fully express your
-                    vibrant personality with three grayscale options. Feeling
-                    adventurous? Put on a heather gray tee. Want to be a
-                    trendsetter? Try our exclusive colorway: &quot;Black&quot;.
-                    Need to add an extra pop of color to your outfit? Our white
-                    tee has you covered.
+                    {data?.data?.description}
                   </p>
                 </div>
               </div>
