@@ -33,8 +33,8 @@ const img = {
   width: "auto",
   height: "100%",
 };
-function AddProductImage() {
-  const [files, setFiles] = useState<File[]>([]);
+function AddProductImage({ files, setFiles }: { files: any; setFiles: any }) {
+  const [images, setImages] = useState<any>([]);
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
       "image/*": [],
@@ -42,26 +42,28 @@ function AddProductImage() {
     onDrop: (acceptedFiles) => {
       if (acceptedFiles.length + files.length > 3)
         return alert("Max 3 images allowed");
-      setFiles([
+      setImages([
         ...files,
         ...acceptedFiles.map((file) => ({
           ...file,
           preview: URL.createObjectURL(file),
         })),
       ]);
+      setFiles([...files, ...acceptedFiles]);
+      
     },
   });
 
   const deleteImage = (e: any) => {
-    let newFiles = files.filter(
-      (file) =>
+    let newFiles = images.filter(
+      (file: any) =>
         (file as any).preview !==
         e.target.parentElement.parentElement.lastChild.src
     );
     setFiles(newFiles);
   };
 
-  const thumbs = files.map((file: any) => (
+  const thumbs = images.map((file: any) => (
     <div style={thumb} key={file?.name} className="group">
       <div style={thumbInner} className="relative">
         <div>

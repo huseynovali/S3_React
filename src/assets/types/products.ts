@@ -15,8 +15,8 @@ export interface AdminMobileNavProps {
   navigation: { id: number; nav: string }[];
 }
 export interface ProfileDropdownProps {
-    profile: { text: string; fun: () => void }[];
-    }
+  profile: { text: string; fun: () => void }[];
+}
 
 export interface LoginFormValues {
   email: string;
@@ -28,4 +28,11 @@ export interface RegisterFormValues {
   email: string;
   password: string;
   confirmPassword: string;
+}
+
+export interface ImageFile {
+  name: string;
+  preview: string;
+  size: number;
+  type: string;
 }

@@ -17,7 +17,6 @@ function AdminProductList() {
       refetchOnMount: false,
     }
   );
-  console.log(data);
 
   function closeModal() {
     setIsOpenAlert(false);
@@ -56,7 +55,7 @@ function AdminProductList() {
                         {product.name}
                       </p>
                       <p className="mt-2 flex items-center text-sm text-gray-500">
-                        <span className="truncate">{product.price}</span>
+                        <span className="truncate">{product.price} Azn</span>
                       </p>
                     </div>
                     <div className="hidden md:block"></div>
