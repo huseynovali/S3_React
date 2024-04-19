@@ -1,7 +1,9 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
+import { ProfileDropdownProps } from "../../assets/types/products";
 
-function ProfileDropdown({ profile }: { readonly profile: readonly string[] }) {
+function ProfileDropdown({ profile }: Readonly<ProfileDropdownProps>) {
+  let user = JSON.parse(localStorage.getItem("user") ?? "{}");
   return (
     <Menu as="div" className="ml-3 relative">
       <div>
@@ -15,7 +17,7 @@ function ProfileDropdown({ profile }: { readonly profile: readonly string[] }) {
         </Menu.Button>
       </div>
       <Transition
-        as={Fragment}
+        as={Menu.Items}
         enter="transition ease-out duration-100"
         enterFrom="transform opacity-0 scale-95"
         enterTo="transform opacity-100 scale-100"
@@ -23,16 +25,21 @@ function ProfileDropdown({ profile }: { readonly profile: readonly string[] }) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className=" overflow-hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <div className="px-4">
+            <p className=" break-words font-bold">{user ? user.sub : null}</p>
+          </div>
+
           {profile.map((item) => (
-            <Menu.Item key={item}>
+            <Menu.Item key={item.text}>
               <button
                 type="button"
+                onClick={item.fun}
                 className={
                   "block px-4 py-2 text-sm text-indigo-500 hover:text-indigo-300"
                 }
               >
-                {item}
+                {item.text}
               </button>
             </Menu.Item>
           ))}

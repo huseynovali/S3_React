@@ -2,14 +2,15 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import AuthPageHeader from "./AuthPageHeader";
-
-interface FormValues {
-  email: string;
-  password: string;
-}
+import { LoginFormValues } from "../../assets/types/products";
+import { useMutation } from "react-query";
+import { AuthService } from "../../services/api/AuthService";
+import { useNavigate } from "react-router";
 
 const LoginComp: React.FC = () => {
-  const initialValues: FormValues = {
+  const navigate = useNavigate();
+
+  const initialValues: LoginFormValues = {
     email: "",
     password: "",
   };
@@ -21,11 +22,25 @@ const LoginComp: React.FC = () => {
     password: Yup.string().required("Password is required"),
   });
 
+  const mutation = useMutation({
+    mutationFn: (user: LoginFormValues) => {
+      const { email, password } = user;
+      return AuthService.login(email, password);
+    },
+    onSuccess: (data) => {
+      localStorage.setItem("token", data.data.token);
+      navigate("/admin/products");
+    },
+    onError: (error: any) => {
+      console.log(error);
+    },
+  });
+
   const handleSubmit = (
-    values: FormValues,
+    values: LoginFormValues,
     { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
   ) => {
-    console.log(values);
+    mutation.mutate(values);
     setSubmitting(false);
   };
 
@@ -92,7 +107,11 @@ const LoginComp: React.FC = () => {
                     disabled={isSubmitting}
                     className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
-                    Sign in
+                    {mutation.isLoading ? (
+                      <div className="animate-spin rounded-full h-[20px] w-[20px] border-t-2 border-b-2 border-gray-900"></div>
+                    ) : (
+                      "Sign in"
+                    )}
                   </button>
                 </div>
               </Form>

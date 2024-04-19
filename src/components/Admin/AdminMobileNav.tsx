@@ -1,11 +1,7 @@
 import { Fragment } from "react";
 import { Disclosure } from "@headlessui/react";
 import { BellIcon } from "@heroicons/react/20/solid";
-
-interface AdminMobileNavProps {
-  profile: readonly string[];
-  navigation: { id: number; nav: string }[];
-}
+import { AdminMobileNavProps } from "../../assets/types/products";
 
 function AdminMobileNav({
   profile,
@@ -56,10 +52,11 @@ function AdminMobileNav({
         <div className="mt-3 px-2 space-y-1">
           {profile.map((item) => (
             <button
-              key={item}
+              onClick={item.fun}
+              key={item.text}
               className="block px-3 py-2 rounded-md text-base font-medium text-indigo-300 hover:text-white hover:bg-indigo-600"
             >
-              {item}
+              {item.text}
             </button>
           ))}
         </div>

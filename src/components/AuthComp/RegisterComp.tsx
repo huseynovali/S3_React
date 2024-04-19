@@ -2,16 +2,14 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import AuthPageHeader from "./AuthPageHeader";
-
-interface FormValues {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
+import { useMutation } from "react-query";
+import { RegisterFormValues } from "../../assets/types/products";
+import { AuthService } from "../../services/api/AuthService";
+import { useNavigate } from "react-router";
 
 const RegisterComp: React.FC = () => {
-  const initialValues: FormValues = {
+  const navigate = useNavigate();
+  const initialValues: RegisterFormValues = {
     name: "",
     email: "",
     password: "",
@@ -28,12 +26,23 @@ const RegisterComp: React.FC = () => {
       .oneOf([Yup.ref("password"), undefined], "Passwords must match")
       .required("Confirm Password is required"),
   });
-
+  const mutation = useMutation({
+    mutationFn: (user: RegisterFormValues) => {
+      const { name, email, password } = user;
+      return AuthService.register(name, email, password);
+    },
+    onSuccess: (data) => {
+      navigate("/login");
+    },
+    onError: (error: any) => {
+      console.log(error);
+    },
+  });
   const handleSubmit = (
-    values: FormValues,
+    values: RegisterFormValues,
     { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
   ) => {
-    console.log(values);
+    mutation.mutate(values);
     setSubmitting(false);
   };
 
@@ -140,7 +149,11 @@ const RegisterComp: React.FC = () => {
                     disabled={isSubmitting}
                     className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
-                    Register
+                    {mutation.isLoading ? (
+                      <div className="animate-spin rounded-full h-[20px] w-[20px] border-t-2 border-b-2 border-gray-900"></div>
+                    ) : (
+                      "Register"
+                    )}
                   </button>
                 </div>
               </Form>

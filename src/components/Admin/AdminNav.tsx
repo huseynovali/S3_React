@@ -8,7 +8,16 @@ const navigation = [
   { id: 1, nav: "Products" },
   { id: 2, nav: "Add product" },
 ];
-const profile = ["Your Profile", "Sign out"];
+const profile = [
+  { text: "Your Profile", fun: () => {} },
+  {
+    text: "Sign out",
+    fun: () => {
+      localStorage.clear();
+      window.location.href = "/";
+    },
+  },
+];
 function AdminNav() {
   return (
     <Disclosure as="nav" className="bg-indigo-600">
