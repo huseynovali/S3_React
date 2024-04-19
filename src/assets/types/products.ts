@@ -36,3 +36,9 @@ export interface ImageFile {
   size: number;
   type: string;
 }
+
+export interface AddProductValues {
+  title: string;
+  about: string;
+  price: string;
+}

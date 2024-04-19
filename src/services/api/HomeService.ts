@@ -18,13 +18,13 @@ export const HomeService = {
   getAllProducts: async () => {
     return axiosPrivate.get("use/public/product/all");
   },
-  addProduct: async (userId: number, data) => {
+  addProduct: async (userId: number, data: FormData) => {
     return axios.post(`use/private/product/${userId}`, data, {
       headers: {
-        'Content-Type': 'multipart/form-data'
-      }
+        "Content-Type": "multipart/form-data",
+      },
     });
-  }
+  },
 
   // ,
   // getLikedPostByUser: async (userId: number) => {

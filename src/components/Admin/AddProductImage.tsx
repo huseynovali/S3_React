@@ -34,16 +34,16 @@ const img = {
   height: "100%",
 };
 function AddProductImage({ files, setFiles }: { files: any; setFiles: any }) {
-  const [images, setImages] = useState<any>([]);
+  const [images, setImages] = useState<File[]>([]);
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
       "image/*": [],
     },
     onDrop: (acceptedFiles) => {
-      if (acceptedFiles.length + files.length > 3)
+      if (acceptedFiles.length + images.length > 3)
         return alert("Max 3 images allowed");
       setImages([
-        ...files,
+        ...images,
         ...acceptedFiles.map((file) => ({
           ...file,
           preview: URL.createObjectURL(file),
@@ -55,12 +55,16 @@ function AddProductImage({ files, setFiles }: { files: any; setFiles: any }) {
   });
 
   const deleteImage = (e: any) => {
+    console.log('salam');
+    
     let newFiles = images.filter(
       (file: any) =>
         (file as any).preview !==
         e.target.parentElement.parentElement.lastChild.src
     );
-    setFiles(newFiles);
+    console.log(newFiles);
+    
+    setImages(newFiles);
   };
 
   const thumbs = images.map((file: any) => (
@@ -85,7 +89,7 @@ function AddProductImage({ files, setFiles }: { files: any; setFiles: any }) {
 
   return (
     <section className="w-full">
-      {files.length >= 3 ? (
+      {images.length >= 3 ? (
         <div className="space-y-1 text-center">
           <div className="flex text-sm text-gray-600">
             <span>Max 3 images allowed</span>
@@ -96,7 +100,7 @@ function AddProductImage({ files, setFiles }: { files: any; setFiles: any }) {
           <div className="mt-1 sm:mt-0 sm:col-span-2">
             <div
               className={classNames(
-                files.length >= 3
+                images.length >= 3
                   ? "border-2 border-red-500 border-dashed rounded-md flex justify-center px-6 pt-5 pb-6"
                   : " flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md"
               )}

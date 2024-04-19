@@ -14,7 +14,6 @@ function AdminProductList() {
     () => HomeService.getProductsByUserId(userId),
     {
       refetchOnWindowFocus: false,
-      refetchOnMount: false,
     }
   );
 
