@@ -1,12 +1,9 @@
-import React from 'react'
-import RegisterComp from '../components/AuthComp/RegisterComp'
-
+import RegisterComp from "../components/AuthComp/RegisterComp";
 function Register() {
   return (
     <div>
-        <RegisterComp/>
+      <RegisterComp />
     </div>
-  )
+  );
 }
-
-export default Register
+export default Register;

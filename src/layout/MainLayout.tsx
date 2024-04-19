@@ -1,4 +1,3 @@
-import React from 'react'
 import LayoutHeader from '../components/LayoutHeader'
 import { Outlet } from 'react-router'
 

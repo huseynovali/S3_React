@@ -1,6 +1,6 @@
 import React from "react";
 
-function AuthPageHeader({ children }: { children: React.ReactNode }) {
+function AuthPageHeader({ children }: { readonly children: React.ReactNode }) {
   return (
     <div className="sm:mx-auto sm:w-full sm:max-w-md">
       <img

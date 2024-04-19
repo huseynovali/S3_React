@@ -1,7 +1,7 @@
 import { axiosPrivate } from "./axiosPrivate.ts";
 
 export const HomeService = {
-   getUserById: async (userId: number) => {
+  getUserById: async (userId: number) => {
     return axiosPrivate.get(`user/${userId}`);
   },
 

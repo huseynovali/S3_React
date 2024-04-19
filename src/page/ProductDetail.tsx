@@ -1,10 +1,9 @@
-import React from 'react'
-import ProductDetailsComp from '../components/ProductDetailsComp'
-
+import ProductDetailsComp from "../components/ProductDetailsComp";
 function ProductDetail() {
   return (
-    <div><ProductDetailsComp/></div>
-  )
+    <div>
+      <ProductDetailsComp />
+    </div>
+  );
 }
-
-export default ProductDetail
+export default ProductDetail;

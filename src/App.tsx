@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes } from "react-router";
 import MainLayout from "./layout/MainLayout";
 import Home from "./page/Home";
@@ -18,10 +17,10 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
       </Route>
-      <Route path="admin" element={<Admin />} >
-       <Route path="products" element={<AdminProductList />} />
+      <Route path="admin" element={<Admin />}>
+        <Route path="products" element={<AdminProductList />} />
 
-       <Route path="addproduct" element={<AddProduct/>} />
+        <Route path="addproduct" element={<AddProduct />} />
       </Route>
     </Routes>
   );

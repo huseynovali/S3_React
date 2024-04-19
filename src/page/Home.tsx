@@ -1,10 +1,5 @@
-import React from 'react'
-import AllProducts from '../components/AllProducts'
-
+import AllProducts from "../components/AllProducts";
 function Home() {
-  return (
-    <AllProducts/>
-  )
+  return <AllProducts />;
 }
-
-export default Home
+export default Home;

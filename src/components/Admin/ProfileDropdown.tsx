@@ -1,8 +1,7 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import classNames from "classnames";
 
-function ProfileDropdown({ profile }: { profile: string[] }) {
+function ProfileDropdown({ profile }: { readonly profile: readonly string[] }) {
   return (
     <Menu as="div" className="ml-3 relative">
       <div>
@@ -27,17 +26,14 @@ function ProfileDropdown({ profile }: { profile: string[] }) {
         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
           {profile.map((item) => (
             <Menu.Item key={item}>
-              {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? "" : "",
-                    "block px-4 py-2 text-sm text-indigo-500"
-                  )}
-                >
-                  {item}
-                </a>
-              )}
+              <button
+                type="button"
+                className={
+                  "block px-4 py-2 text-sm text-indigo-500 hover:text-indigo-300"
+                }
+              >
+                {item}
+              </button>
             </Menu.Item>
           ))}
         </Menu.Items>

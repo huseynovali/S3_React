@@ -1,12 +1,9 @@
-import React from 'react'
-import AdminComp from '../components/Admin/AdminComp'
-
+import AdminComp from "../components/Admin/AdminComp";
 function Admin() {
   return (
     <div>
-      <AdminComp/>
+      <AdminComp />
     </div>
-  )
+  );
 }
-
-export default Admin
+export default Admin;
