@@ -8,8 +8,8 @@ export const HomeService = {
   getPosts: async () => {
     return axiosPrivate.get("post");
   },
-  getProductByUserId: async (userId: number) => {
-    return axiosPrivate.get(`product/${userId}/user`);
+  getProductsByUserId: async (userId: number) => {
+    return axiosPrivate.get(`use/private/product/${userId}/user`);
   },
   getProductById: async (productId: number) => {
     return axiosPrivate.get(`use/public/product/${productId}`);
@@ -17,6 +17,7 @@ export const HomeService = {
   getAllProducts: async () => {
     return axiosPrivate.get("use/public/product/all");
   },
+ 
 
   // ,
   // getLikedPostByUser: async (userId: number) => {
