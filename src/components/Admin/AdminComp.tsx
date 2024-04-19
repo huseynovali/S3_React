@@ -1,5 +1,3 @@
-/* This example requires Tailwind CSS v2.0+ */
-
 import { Outlet } from "react-router";
 import AdminNav from "./AdminNav";
 

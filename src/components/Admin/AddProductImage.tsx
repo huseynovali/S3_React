@@ -1,6 +1,6 @@
-import { TrashIcon, VideoCameraSlashIcon } from "@heroicons/react/20/solid";
+import { TrashIcon } from "@heroicons/react/20/solid";
 import classNames from "classnames";
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 
 const thumbsContainer: object = {
@@ -40,14 +40,14 @@ function AddProductImage() {
       "image/*": [],
     },
     onDrop: (acceptedFiles) => {
-      if(acceptedFiles.length + files.length > 3) return alert("Max 3 images allowed");
+      if (acceptedFiles.length + files.length > 3)
+        return alert("Max 3 images allowed");
       setFiles([
         ...files,
-        ...acceptedFiles.map((file) =>
-          Object.assign({}, file, {
-            preview: URL.createObjectURL(file),
-          })
-        ),
+        ...acceptedFiles.map((file) => ({
+          ...file,
+          preview: URL.createObjectURL(file),
+        })),
       ]);
     },
   });
@@ -80,11 +80,6 @@ function AddProductImage() {
       </div>
     </div>
   ));
-
-  //   useEffect(() => {
-  //     return () =>
-  //       files.forEach((file: any) => URL.revokeObjectURL(file.preview));
-  //   }, []);
 
   return (
     <section className="w-full">

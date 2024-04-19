@@ -1,11 +1,13 @@
-import { Fragment } from "react";
 import { Disclosure } from "@headlessui/react";
 import { Bars2Icon, BellIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 import ProfileDropdown from "./ProfileDropdown";
 import AdminMobileNav from "./AdminMobileNav";
 
-const navigation = ["Products", "Add product"];
+const navigation = [
+  { id: 1, nav: "Products" },
+  { id: 2, nav: "Add product" },
+];
 const profile = ["Your Profile", "Sign out"];
 function AdminNav() {
   return (
@@ -27,23 +29,29 @@ function AdminNav() {
                   </div>
                   <div className="hidden md:block">
                     <div className="ml-10 flex items-baseline space-x-4">
-                      {navigation.map((item, itemIdx) =>
-                        itemIdx === 0 ? (
+                      {navigation.map((item) =>
+                        item.id === 1 ? (
                           <Link
-                            key={itemIdx}
-                            to={item.split(" ").join("").toLocaleLowerCase()}
+                            key={item.id}
+                            to={item.nav
+                              .split(" ")
+                              .join("")
+                              .toLocaleLowerCase()}
                           >
                             <button className="bg-indigo-600 text-white block px-3 py-2 rounded-md text-base font-medium">
-                              {item}
+                              {item.nav}
                             </button>
                           </Link>
                         ) : (
                           <Link
-                            key={itemIdx}
-                            to={item.split(" ").join("").toLocaleLowerCase()}
+                            key={item.id}
+                            to={item.nav
+                              .split(" ")
+                              .join("")
+                              .toLocaleLowerCase()}
                             className="text-indigo-300 hover:bg-indigo-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                           >
-                            {item}
+                            {item.nav}
                           </Link>
                         )
                       )}

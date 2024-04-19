@@ -3,5 +3,10 @@ export interface ProductObject {
     name: string;
     description: string;
     price: number;
-    images: [];
+    images: [
+        {
+            id: number;
+           
+        }
+    ];
     }

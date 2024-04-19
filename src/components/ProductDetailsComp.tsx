@@ -1,15 +1,18 @@
 import classNames from "classnames";
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { HomeService } from "../services/api/HomeService";
+import { useParams } from "react-router";
 
 function ProductDetailsComp() {
-  const id = 2;
+  const id = useParams<{ id: string }>()?.id;
+  console.log(id);
+
   const [selectedPhoto, setSelectedPhoto] = useState();
 
   const { isLoading, error, data } = useQuery(
     ["getPostId", id],
-    () => HomeService.getProductById(id),
+    () => HomeService.getProductById(Number(id)),
     {
       refetchOnWindowFocus: false,
       refetchOnMount: false,
@@ -30,14 +33,15 @@ function ProductDetailsComp() {
       <div className="pt-6">
         <div className="grid  md:grid-cols-2">
           <div className="mt-6 max-w-2xl mx-auto sm:px-6  px-8 grid lg:grid-cols-1 gap-x-8 gap-y-3">
-            <div className=" w-full h-[500px] rounded-lg overflow-hidden block">
+            <div className=" lg:w-[500px] h-[500px] rounded-lg overflow-hidden block shadow-lg ">
               {data?.data?.images.map((image: any) => (
                 <img
+                  key={image?.id}
                   src={`http://localhost:8080/api/v1/use/public/product/${data?.data?.id}/image/${image?.id}`}
                   alt="Two each of gray, white, and black shirts laying flat."
                   className={classNames(
                     image?.id == selectedPhoto ? "block" : "hidden",
-                    "w-full h-full object-center object-cover"
+                    "w-full h-full object-center object-cover shadow-lg rounded-lg"
                   )}
                 />
               ))}
@@ -46,6 +50,7 @@ function ProductDetailsComp() {
             <div className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
               {data?.data?.images?.map((image: any) => (
                 <label
+                  key={image?.id}
                   className={classNames(
                     selectedPhoto === image?.id
                       ? "border-indigo-500"
@@ -65,7 +70,7 @@ function ProductDetailsComp() {
                     src={`http://localhost:8080/api/v1/use/public/product/${data?.data?.id}/image/${image?.id}`}
                     loading="lazy"
                     alt="Model wearing plain gray basic tee."
-                    className="w-full h-full object-center object-cover rounded-md"
+                    className="w-full h-full object-center object-cover rounded-md shadow-lg "
                   />
 
                   <div
