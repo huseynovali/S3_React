@@ -50,20 +50,19 @@ function AddProductImage({ files, setFiles }: { files: any; setFiles: any }) {
         })),
       ]);
       setFiles([...files, ...acceptedFiles]);
-      
     },
   });
 
   const deleteImage = (e: any) => {
-    console.log('salam');
-    
+    console.log("salam");
+
     let newFiles = images.filter(
       (file: any) =>
         (file as any).preview !==
         e.target.parentElement.parentElement.lastChild.src
     );
     console.log(newFiles);
-    
+
     setImages(newFiles);
   };
 

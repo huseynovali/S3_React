@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.salam {
+  background-image: url("./assets/react.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}

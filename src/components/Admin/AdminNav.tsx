@@ -1,6 +1,6 @@
 import { Disclosure } from "@headlessui/react";
 import { Bars2Icon, BellIcon, XMarkIcon } from "@heroicons/react/20/solid";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import ProfileDropdown from "./ProfileDropdown";
 import AdminMobileNav from "./AdminMobileNav";
 
@@ -19,6 +19,9 @@ const profile = [
   },
 ];
 function AdminNav() {
+  const nav = useLocation();
+  console.log(nav.pathname.split("/")[2]);
+
   return (
     <Disclosure as="nav" className="bg-indigo-600">
       {({ open }) => (
@@ -39,7 +42,8 @@ function AdminNav() {
                   <div className="hidden md:block">
                     <div className="ml-10 flex items-baseline space-x-4">
                       {navigation.map((item) =>
-                        item.id === 1 ? (
+                        nav.pathname.split("/")[2] ===
+                        item.nav.split(" ").join("").toLocaleLowerCase() ? (
                           <Link
                             key={item.id}
                             to={item.nav

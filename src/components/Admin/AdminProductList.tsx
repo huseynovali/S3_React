@@ -4,11 +4,11 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import { HomeService } from "../../services/api/HomeService";
 import { ProductObject } from "../../assets/types/products";
-
+import classNames from "classnames";
 function AdminProductList() {
   const [isOpenAlert, setIsOpenAlert] = useState(false);
   const userId = JSON.parse(localStorage.getItem("user") ?? "{}").userId;
-
+  const [imageLoaded, setImageLoaded] = useState(true);
   const { isLoading, error, data } = useQuery(
     ["Userproducts", userId],
     () => HomeService.getProductsByUserId(userId),
@@ -41,11 +41,19 @@ function AdminProductList() {
             <a href={`/${product.id}`} className="block hover:bg-gray-50">
               <div className="flex items-center px-4 py-4 sm:px-6">
                 <div className="min-w-0 flex-1 flex items-center">
-                  <div className="flex-shrink-0">
+                  <div className="flex-shrink-0 ">
                     <img
-                      className="h-12 w-12 rounded-full"
+                      className={classNames(
+                        imageLoaded
+                          ? `salam h-12 w-12 rounded-full`
+                          : "h-12 w-12 rounded-full"
+                      )}
                       src={`http://localhost:8080/api/v1/use/public/product/${product?.id}/image/${product?.images[0].id}`}
                       alt={product.name}
+                      loading="lazy"
+                      onLoad={() => {
+                        setImageLoaded(true);
+                      }}
                     />
                   </div>
                   <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
