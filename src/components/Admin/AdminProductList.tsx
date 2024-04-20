@@ -1,4 +1,4 @@
-import { PencilSquareIcon, TrashIcon } from "@heroicons/react/20/solid";
+import { TrashIcon } from "@heroicons/react/20/solid";
 import ProductDeleteAlert from "./ProductDeleteAlert";
 import { useState } from "react";
 import { useQuery } from "react-query";
@@ -38,7 +38,10 @@ function AdminProductList() {
     <div className="bg-white  overflow-hidden ">
       <ul className=" ">
         {data?.data?.map((product: ProductObject) => (
-          <li key={product.name} className="my-2 border-2 flex items-center justify-between">
+          <li
+            key={product.name}
+            className="my-2 border-2 flex items-center justify-between"
+          >
             <a href={`/${product.id}`} className="block hover:bg-gray-50 ">
               <div className="flex items-center px-4 py-4 sm:px-6">
                 <div className="min-w-0 flex-1 flex items-center">
@@ -65,14 +68,19 @@ function AdminProductList() {
               </div>
             </a>
             <div className="flex">
-            <button
-              className="delete_Icon p-2  hover:bg-slate-200 rounded-full "
-              onClick={openModal}
-            >
-              <TrashIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
-            </button>
-          
-            {isOpenAlert && <ProductDeleteAlert id={product.id} closeModal={closeModal} />}
+              <button
+                className="delete_Icon p-2  hover:bg-slate-200 rounded-full "
+                onClick={openModal}
+              >
+                <TrashIcon
+                  className="h-5 w-5 text-red-400"
+                  aria-hidden="true"
+                />
+              </button>
+
+              {isOpenAlert && (
+                <ProductDeleteAlert id={product.id} closeModal={closeModal} />
+              )}
             </div>
           </li>
         ))}
