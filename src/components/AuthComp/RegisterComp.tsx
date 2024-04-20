@@ -31,7 +31,7 @@ const RegisterComp: React.FC = () => {
       const { name, email, password } = user;
       return AuthService.register(name, email, password);
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       navigate("/login");
     },
     onError: (error: any) => {

@@ -31,7 +31,7 @@ function PrivatePage() {
     return <Outlet />;
   }
 
-  return <Navigate to="/auth/login" />;
+  return <Navigate to="/login" />;
 }
 
 export default PrivatePage;

@@ -61,7 +61,7 @@ function AddProduct() {
   };
 
   return (
-    <div className="grid grid-cols-2">
+    <div className="grid lg:grid-cols-2">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -133,7 +133,7 @@ function AddProduct() {
           </div>
         </Form>
       </Formik>
-      <div className="flex justify-center items-center">
+      <div className=" justify-center items-center hidden lg:flex">
         <img src={AddIcon} alt="add icon" />
       </div>
     </div>

@@ -33,7 +33,13 @@ const img = {
   width: "auto",
   height: "100%",
 };
-function AddProductImage({ files, setFiles }: { files: any; setFiles: any }) {
+function AddProductImage({
+  files,
+  setFiles,
+}: {
+  readonly files: any;
+  readonly setFiles: any;
+}) {
   const [images, setImages] = useState<File[]>([]);
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
@@ -58,8 +64,7 @@ function AddProductImage({ files, setFiles }: { files: any; setFiles: any }) {
 
     let newFiles = images.filter(
       (file: any) =>
-        (file as any).preview !==
-        e.target.parentElement.parentElement.lastChild.src
+        file.preview !== e.target.parentElement.parentElement.lastChild.src
     );
     console.log(newFiles);
 

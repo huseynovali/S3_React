@@ -1,6 +1,6 @@
 import { Disclosure } from "@headlessui/react";
 import { Bars2Icon, BellIcon, XMarkIcon } from "@heroicons/react/20/solid";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation} from "react-router-dom";
 import ProfileDropdown from "./ProfileDropdown";
 import AdminMobileNav from "./AdminMobileNav";
 
