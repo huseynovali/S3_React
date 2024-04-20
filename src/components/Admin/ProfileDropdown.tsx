@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ProfileDropdownProps } from "../../assets/types/products";
 

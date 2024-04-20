@@ -32,7 +32,8 @@ function AddProduct() {
       return HomeService.addProduct(userId, data);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(["Userproducts", userId]);
+      queryClient.refetchQueries(["Userproducts", userId]);
+      queryClient.refetchQueries("allproducts");
       setFiles([]);
       navigate("/admin/products");
     },

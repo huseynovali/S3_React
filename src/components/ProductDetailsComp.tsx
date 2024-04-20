@@ -43,6 +43,7 @@ function ProductDetailsComp() {
                     image?.id == selectedPhoto ? "block" : "hidden",
                     "w-full h-full object-center object-cover shadow-lg rounded-lg"
                   )}
+                  loading="lazy"
                 />
               ))}
             </div>

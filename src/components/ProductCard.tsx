@@ -15,6 +15,7 @@ function ProductCard({
           src={`http://localhost:8080/api/v1/use/public/product/${product?.id}/image/${product?.images[0].id}`}
           alt="Front of men&#039;s Basic Tee in black."
           className="w-full h-full object-center object-cover lg:w-full lg:h-full"
+          loading="lazy"
         />
       </div>
       <div className="mt-4 flex justify-between">
